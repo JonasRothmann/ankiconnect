@@ -157,7 +157,7 @@ func TestNotesManager_Update(t *testing.T) {
 		defer httpmock.Reset()
 
 		registerVerifiedPayload(t,
-			loadTestPayload(t, ActionUpdateNoteFields),
+			loadTestPayload(t, ActionUpdateNote),
 			genericSuccessJson)
 
 		restErr := client.Notes.Update(updateNoteStruct)

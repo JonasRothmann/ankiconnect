@@ -3,12 +3,12 @@ package ankiconnect
 import "github.com/privatesquare/bkst-go-utils/utils/errors"
 
 const (
-	ActionFindNotes        = "findNotes"
-	ActionNotesInfo        = "notesInfo"
-	ActionAddNote          = "addNote"
-	ActionAddNotes         = "addNotes"
-	ActionDeleteNotes      = "deleteNotes"
-	ActionUpdateNoteFields = "updateNoteFields"
+	ActionFindNotes   = "findNotes"
+	ActionNotesInfo   = "notesInfo"
+	ActionAddNote     = "addNote"
+	ActionAddNotes    = "addNotes"
+	ActionDeleteNotes = "deleteNotes"
+	ActionUpdateNote  = "updateNote"
 )
 
 type (
@@ -71,6 +71,7 @@ type (
 		Audio   []Audio   `json:"audio,omitempty"`
 		Video   []Video   `json:"video,omitempty"`
 		Picture []Picture `json:"picture,omitempty"`
+		Tags    []string  `json:"tags,omitempty"`
 	}
 
 	// Fields represents the main fields for a Anki Note
@@ -169,6 +170,6 @@ func (nm *notesManager) Update(note UpdateNote) *errors.RestErr {
 	}
 	// The return of this should always be 'null' int64 may not be the best
 	// type here
-	_, restErr := post[int64](nm.Client, ActionUpdateNoteFields, &params)
+	_, restErr := post[int64](nm.Client, ActionUpdateNote, &params)
 	return restErr
 }
